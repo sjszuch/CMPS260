@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Lisu+Bosa&display=swap");
+* {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "LiSu Bosa", serif;
+  color: #f1f4f4;
+}
+
+body {
+  background-color: #383847;
+  padding: 2rem;
+}
+
+.module {
+  margin: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+
+.select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.select a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #b5dddb;
+  color: #383847;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.select a:hover {
+  background-color: #92cdca;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+/*# sourceMappingURL=style.css.map */

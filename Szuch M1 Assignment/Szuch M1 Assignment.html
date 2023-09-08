@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CMPS 260: Module 1 Programming Assignment</title>
+    <style>
+      * {
+        font-family: monospace;
+      }
+    </style>
+    <script>
+      // NOTE: You can enter both code and explanations. For an explanation, start
+      //       the line with '//' which indicates a comment.
+
+      // NOTE: console.log prints text to the browser console that you can enable
+      //       to see the output. It is a little bit more convenient than alert so
+      //       we will use it most of the time.
+
+      // NOTE: Please review the following links regularly:
+      //       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+      //       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+      //       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+      //----------------------------//
+      // Setting up the environment //
+      //----------------------------//
+      console.log("Setting up the environment");
+
+      // 1. Open this file in the browser.
+      // 2. Make sure to enable the developer tools.
+      // 3. Install Atom.
+
+      // 4. Change the content of the HTML body element from TODO to See Console!
+
+      // 5. Reload the file in the browser.
+      // 6. Copy this file and index.html to a new directory in your jail.
+      // 7. Homework submissions will include a link to a file in your jail.
+      // 8. Submit this file when you are done.
+
+      // Relevant tutorials and videos:
+      // https://it.pointpark.edu/tutorials/atom-editor/
+      // https://it.pointpark.edu/tutorials/creating-your-homepage/
+      // https://it.pointpark.edu/tutorials/filezilla/
+
+      //-------------------//
+      // JavaScript basics //
+      //-------------------//
+      console.log("JavaScript basics");
+
+      //XX 1. Search the web to find the difference between static and dynamic typing.
+      //XX 2. Define a variable and initialized it to the string Hello World!
+      //XX 3. Print the content of the variable to the console (use console.log()).
+      //XX 4. Alert the content of the variable to the screen.
+      //XX 5. Predict what the following code will print (write it down), then try it.
+      var myVariable = "global";
+      var myOtherVariable = "global";
+      var helloWorld = "Hello World!";
+
+      function myFunction() {
+        var myVariable = "local";
+        return myVariable;
+      }
+
+      function myOtherFunction() {
+        myOtherVariable = "local";
+        return myOtherVariable;
+      }
+
+      function helloWorldFunction() {
+        helloWorld = "local";
+        return helloWorld;
+      }
+
+      console.log(helloWorld);
+      alert(helloWorld);
+
+      //console.log(myVariable);
+      //console.log(myFunction());
+      //console.log(myOtherVariable);
+      //console.log(myOtherFunction());
+      //console.log(myOtherVariable);
+
+      //XX 6. Figure out what the & operator does.
+      //    E.g., 10 & 5 == 0 and 10 & 6 == 2, why?
+      // NOTE: this is a difficult question
+      // HINT: use the console in the browser for testing
+
+      // 7. What is the difference between == and ===? Give an example.
+
+      // The difference between == and === is that == is used when comparing two values no matter the type, but
+      // === is used when they MUST be the same type. An example of this would be something like,
+      // 5 == "5" (TRUE) vs 5 === "5" (FALSE)
+
+      //--------------------//
+      // Control structures //
+      //--------------------//
+      console.log("Control structures");
+
+      // 1. Write an if statement to check if a year is a leap year and print it to
+      //    the console.
+      var year = 2016;
+      // ... put if here ...
+      if (year % 4 == 0) {
+        console.log("Leap Year");
+      } else {
+        console.log("Not a Leap Year");
+      }
+      // 2. Write a loop to calculate n! (n factorial) and print it to the console.
+      var n = 10;
+      // ... put loop here ...
+      var nFact = 1;
+      for (var i = 1; i <= n; i++) {
+        nFact *= i;
+      }
+      console.log(nFact);
+
+      //-----------//
+      // Functions //
+      //-----------//
+      console.log("Functions");
+
+      // 1. Write a function to check if an array contains a specific number at the
+      //    first or last position of the array.
+      function checkForNumber(arr, num) {
+        // modify
+        if (arr[0] == num || arr[arr.length - 1] == num) {
+          return true;
+        }
+        return false;
+      }
+      // NOTE: all these tests should eventually print true.
+      console.log(checkForNumber([4, 2, 5, 3], 4) === true);
+      console.log(checkForNumber([4, 2, 5, 3], 3) === true);
+      console.log(checkForNumber([4, 2, 5, 3], 2) === false);
+      console.log(checkForNumber([4, 2, 5, 3], 13) === false);
+
+      //-------------------------------------------//
+      // Object-oriented programming in JavaScript //
+      //-------------------------------------------//
+      console.log("Object-oriented programming in JavaScript");
+
+      // 1. Add methods to the following object to calculate the circumference
+      //   and area.
+
+      function Triangle(side) {
+        this.side = side;
+      }
+
+      // ... add getCircumference and getArea methods ...
+      Triangle.prototype.getCircumference = function () {
+        return this.side * 3;
+      };
+
+      Triangle.prototype.getArea = function () {
+        return (this.side * this.side * Math.sqrt(3)) / 4;
+      };
+
+      // HINT: use the prototype
+
+      var triangle = new Triangle(5);
+      console.log(
+        "The circumference for the triangle is " + triangle.getCircumference()
+      );
+      console.log("The area for the triangle is " + triangle.getArea());
+
+      //---------------------//
+      // Debugging and tools //
+      //---------------------//
+      console.log("Debugging and tools");
+
+      // 1. Always use the developer tools.
+      // 2. See 1.
+
+      //---------------------------//
+      // Why should we use arrays? //
+      //---------------------------//
+      console.log("Why should we use arrays?");
+
+      // 1. Check the weather forecast for the next 5 days and store the expected
+      //    temperature for each day in a separate variable. Calculate the average
+      //    temperature and print it to the console
+      weather = [50, 60, 70, 80, 90];
+      var sum = 0;
+      for (var i = 0; i < weather.length; i++) {
+        sum += weather[i];
+      }
+      console.log(sum / weather.length);
+
+      // ///////////////////////////////////////////////////////////////
+      // 2. Solve the same problem as in (1) but store the temperatures in an array.
+
+      // 3. Suppose you want to look at the forecast for the next 10 days instead of
+      //    5 days. Is the code for solution (1) or (2) easier to update?
+      // I feel as though it would be much easier to update the weather inside an array because you can easily add new values, delete values, shift values, etc.
+      // Whereas storing these values in seperate variables would be harder to update, delete, and change overall. Additionally, it is less resource intensive to
+      // store the weather in an array, especially if you plan to extand the amount of days stored or even keep track of past forecasts.
+
+      //----------------------------------//
+      // Creating and initializing arrays //
+      //----------------------------------//
+      console.log("Creating and initializing arrays");
+
+      // Use this code to answer the questions below.
+      var daysOfWeek1 = new Array();
+      var daysOfWeek2 = new Array(7);
+      var daysOfWeek3 = new Array(
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      );
+      var daysOfWeek4 = [];
+      var daysOfWeek5 = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      // 1. Get the length for each array and print it to the console.
+      console.log(daysOfWeek1.length);
+      console.log(daysOfWeek2.length);
+      console.log(daysOfWeek3.length);
+      console.log(daysOfWeek4.length);
+      console.log(daysOfWeek5.length);
+
+      // 2. Is is possible to create an array with just the number 7 in it?
+      //    How about 7 and 8?
+      var justSeven = [7];
+      var sevenAndEight = [7, 8];
+      // Yes
+
+      // 3. Which notation do you prefer: new Array() or []?
+      // I prefer [] because of how easy it is to set up an array with it
+
+      // 4. The fibonacci sequence is defined as 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+      //    Create an array with the first 25 elements of this sequence.
+      //    For more info see https://en.wikipedia.org/wiki/Fibonacci_number
+      var fibonacci = [
+        0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597,
+        2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025,
+      ];
+
+      //-----------------//
+      // Adding elements //
+      //-----------------//
+      console.log("Adding elements");
+
+      // Use this array to answer the questions below.
+      var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+      // 1. Add 10 to the end of the array.
+      arr.push(10);
+
+      // 2. Add 0 to the beginning of the array.
+      arr.shift(0);
+
+      // 3. What is the new length of the array? Guess before checking it.
+      //  I guess 10 due to it counting from 0
+      console.log(arr.length);
+
+      //-------------------//
+      // Removing elements //
+      //-------------------//
+      console.log("Removing elements");
+
+      // Use the array from the 'Adding elements' section.
+
+      // 1. Remove 10 from the end of the array.
+      arr.pop(10);
+
+      // 2. Remove 0 from the beginning of the array.
+      arr.unshift(0);
+
+      //-------------------------------------------------------//
+      // Adding and removing elements from a specific position //
+      //-------------------------------------------------------//
+      console.log("Adding and removing elements from a specific position");
+
+      // Use the array from the 'Adding elements' section.
+
+      // 1. Remove all elements except the first and last.
+      arr.splice(1, arr.length - 2);
+
+      // 2. Insert the numbers that were just removed back into the array.
+      arr.splice(1, 0, 2, 3, 4, 5, 6, 7, 8);
+
+      // NOTE: arr should be back to its original state at this point.
+
+      //---------------------------------------------//
+      // Two-dimensional and multidimensional arrays //
+      //---------------------------------------------//
+      console.log("Two-dimensional and multidimensional arrays");
+
+      // 1. Sum all the elements in the two-dimensional array below. Print the
+      //    result to the console.
+
+      var arr = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ];
+
+      for (var i = 0; i < arr.length; i++) {
+        var sum = 0;
+        for (var j = 0; j < arr[i].length; j++) {
+          sum += arr[i][j];
+        }
+        console.log(sum);
+      }
+
+      //-----------------------------------------//
+      // References for JavaScript array methods //
+      //-----------------------------------------//
+      console.log("References for JavaScript array methods");
+
+      // Use the following two arrays to answer the next questions.
+
+      var zero = 0;
+      var positiveNumbers = [1, 2, 3];
+      var negativeNumbers = [-3, -2, -1];
+
+      // 1. Create a new array 'numbers' that contains all numbers above in order.
+
+      var numbers = negativeNumbers.concat(zero, positiveNumbers);
+
+      // 2. Check if every number in the numbers array is less than 10 and print
+      //    the result to the console.
+      for (var i = 0; i < numbers.length; i++) {
+        if (numbers[i] < 10) {
+          console.log("Less than ten!");
+        } else {
+          console.log("Not less than ten!");
+        }
+      }
+
+      // 3. Select all the nonnegative numbers from the numbers array and store them
+      //    in a new array. Print the array to the console.
+      var nonNegative = [];
+      for (var i = 0; i < numbers.length; i++) {
+        if (numbers[i] >= 0) {
+          nonNegative.push(numbers[i]);
+        }
+      }
+
+      // 4. Create a new array that contains all the numbers but then squared.
+      var squared = [];
+      for (var i = 0; i < numbers.length; i++) {
+        squared.push(numbers[i] * numbers[i]);
+      }
+    </script>
+  </head>
+  <body>
+    <p>See Console!</p>
+  </body>
+</html>
