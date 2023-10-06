@@ -179,15 +179,24 @@
       // 1. Check the weather forecast for the next 5 days and store the expected
       //    temperature for each day in a separate variable. Calculate the average
       //    temperature and print it to the console
+      var day1 = 50;
+      var day2 = 60;
+      var day3 = 70;
+      var day4 = 80;
+      var day5 = 90;
+
+      var varSum = 0;
+      varSum = day1 + day2 + day3 + day4 + day5;
+      console.log("Variable average: " + sum / weather.length);
+
+      // ///////////////////////////////////////////////////////////////
+      // 2. Solve the same problem as in (1) but store the temperatures in an array.
       weather = [50, 60, 70, 80, 90];
       var sum = 0;
       for (var i = 0; i < weather.length; i++) {
         sum += weather[i];
       }
-      console.log(sum / weather.length);
-
-      // ///////////////////////////////////////////////////////////////
-      // 2. Solve the same problem as in (1) but store the temperatures in an array.
+      console.log("Array average: " + sum / weather.length);
 
       // 3. Suppose you want to look at the forecast for the next 10 days instead of
       //    5 days. Is the code for solution (1) or (2) easier to update?

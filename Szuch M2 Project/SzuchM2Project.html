@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CMPS 260: Module 2 Programming Project</title>
+    <style>
+      * {
+        font-family: monospace;
+      }
+    </style>
+    <script>
+      // NOTE: You must implement the data structures using the prototype approach.
+      //       This is not what the book uses, so you have to convert it.
+      //       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+
+      // NOTE: Please review the following links regularly:
+      //       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+      //       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+      //       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+      //---------//
+      // Project //
+      //---------//
+      console.log("Project");
+
+      console.log("/-----------------------------/");
+      console.log("Prototype stack data structure implementation and testing");
+      // 1. Implement the stack data structure using the prototype.
+
+      function Stack() {
+        this.items = [];
+
+        this.push = function (element) {
+          this.items.push(element);
+        };
+
+        this.pop = function () {
+          return this.items.pop();
+        };
+
+        this.peek = function () {
+          return this.items[this.items.length - 1];
+        };
+
+        this.isEmpty = function () {
+          return this.items.length == 0;
+        };
+
+        this.size = function () {
+          return this.items.length;
+        };
+
+        this.clear = function () {
+          this.items = [];
+        };
+
+        this.print = function () {
+          console.log(this.items.toString());
+        };
+      }
+
+      // 2. It is possible to use a stack to check if the number of parentheses in a
+      //    string is balanced, meaning there are as many opening parentheses as
+      //    closing ones. In addition, we can also make sure that each opening
+      //    parenthesis precedes a closing parenthesis. Implement this algorithm.
+      //    HINT: When encountering '(' push to the stack and when encountering ')'
+      //    pop from the stack.
+
+      function isBalanced(str) {
+        // check the parentheses in str
+        var stack = new Stack();
+        var balanced = true;
+        var index = 0;
+        var symbol;
+        var top;
+
+        while (index < str.length && balanced) {
+          symbol = str.charAt(index);
+          if (symbol == "(") {
+            stack.push(symbol);
+          } else if (stack.isEmpty()) {
+            balanced = false;
+          } else {
+            stack.pop();
+          }
+          index++;
+        }
+
+        if (balanced && stack.isEmpty()) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      // 3. Write a simple test program that shows your implementation in the
+      //    previous question works.
+
+      console.log(isBalanced("((()))")); // true
+      console.log(isBalanced("(()")); // false
+      console.log(isBalanced("(()))")); // false
+
+      // 4. Implement the queue data structure using the prototype.
+      console.log("/-----------------------------/");
+      console.log("Queue data structure and testing");
+
+      function Queue() {
+        this.enqueue = function (element) {
+          items.push(element);
+        };
+
+        this.dequeue = function () {
+          return items.shift();
+        };
+
+        this.front = function () {
+          return items[0];
+        };
+
+        this.isEmpty = function () {
+          return items.length == 0;
+        };
+
+        this.size = function () {
+          return items.length;
+        };
+
+        this.print = function () {
+          console.log(items.toString());
+        };
+      }
+
+      var items = [];
+
+      var edibles = new Queue();
+
+      // 5. Create a queue that stores edibles, that can be either fruits or
+      //    vegetables. Use the constructor below to create the edible and store a
+      //    few of each kind in the queue (at least 3 of each).
+
+      function Edible(name, isFruit) {
+        this.name = name;
+        this.isFruit = isFruit; // if not fruit, it must be a vegetable
+        this.toString = function () {
+          return "Edible: " + this.name + " Fruit: " + this.isFruit;
+        };
+      }
+
+      var apple = new Edible("Apple", true);
+      var banana = new Edible("Banana", true);
+      var potato = new Edible("Potato", false);
+      var carrot = new Edible("Carrot", false);
+
+      edibles.enqueue(apple);
+      edibles.enqueue(banana);
+      edibles.enqueue(potato);
+      edibles.enqueue(carrot);
+
+      edibles.print();
+
+      // 6. Create two more queues: one for fruits and one for vegetables. For this
+      //    question, only create them (and leave them empty).
+
+      var fruits = new Queue();
+      var vegetables = new Queue();
+
+      // 7. Dequeue all the elements from the edible queue and enqueue them in the
+      //    appropriate queue, either for fruits or vegetables.
+      edibles.dequeue();
+      edibles.dequeue();
+      edibles.dequeue();
+      edibles.dequeue();
+
+      console.log(edibles.isEmpty());
+      edibles.print();
+
+      fruits.enqueue(apple);
+      fruits.enqueue(banana);
+
+      // 8. Print the final contents to the console, showing that your code works.
+      console.log("Fruits:");
+      fruits.print();
+      fruits.dequeue();
+      fruits.dequeue();
+
+      vegetables.enqueue(potato);
+      vegetables.enqueue(carrot);
+      console.log("Vegetables:");
+      vegetables.print();
+    </script>
+  </head>
+  <body>
+    See console!
+  </body>
+</html>
