@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CMPS 260: Module 3 Programming Assignment</title>
+    <style>
+      * {
+        font-family: monospace;
+      }
+    </style>
+    <script>
+      // NOTE: You must implement the data structures using the no prototype approach.
+      //       This is what the book uses, so you can copy it.
+      //       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+
+      // NOTE: Please review the following links regularly:
+      //       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+      //       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+      //       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+      //--------------------------------//
+      // The linked list data structure //
+      //--------------------------------//
+      console.log("The linked list data structure");
+
+      // 1. Suppose you have an array with 1,000 elements and a linked list with 1,000
+      //    elements. For both data structures, you want to retrieve the last entry.
+      //    Does one data structure complete that operation before the other (i.e.,
+      //    is it faster)? If yes, how much faster? If no, why does it take the same
+      //    amount of time?
+
+      // Yes, the array would be faster in this case. However, there are still many cases in which a linked list would be more efficient as well.
+      // Arrays are slower if you want to add or remove items from the middle of the list because you would have to incorporate much more code
+      // and shift everything around. If this is not something that you will ever need to do, then an array would be faster/better.
+
+      //------------------------//
+      // Creating a linked list //
+      //------------------------//
+      console.log("Creating a linked list");
+
+      // We are going to implement the linked list data structure described in the
+      // book. Instead of using 'let' we use 'var' everywhere. Note that this
+      // implementation does not use the prototype (see homework). Here is a skeleton
+      // that we will work on completing:
+
+      function LinkedList() {
+        // helper class
+        function Node(element) {
+          this.element = element;
+          this.next = null;
+        }
+
+        // store length and head
+        var length = 0;
+        var head = null;
+
+        // DONE
+        this.append = function (element) {
+          // add a new item to the end of the list
+          // ...
+          let node = new Node(element),
+            current;
+
+          if (head === null) {
+            head = node;
+          } else {
+            current = head;
+
+            while (current.next) {
+              current = current.next;
+            }
+
+            current.next = node;
+          }
+
+          length++;
+        };
+
+        // DONE
+        this.insert = function (position, element) {
+          // insert a new item at a specific location
+          // ...
+
+          if (position >= 0 && position <= length) {
+            let node = new Node(element),
+              current = head,
+              previous,
+              index = 0;
+
+            if (position === 0) {
+              node.next = current;
+              head = node;
+            } else {
+              while (index++ < position) {
+                previous = current;
+                current = current.next;
+              }
+
+              node.next = current;
+              previous.next = node;
+            }
+
+            length++;
+
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        // DONE
+        this.removeAt = function (position) {
+          // remove an element from a specific location
+          // ...
+
+          if (position > -1 && position < length) {
+            let current = head,
+              previous,
+              index = 0;
+
+            if (position === 0) {
+              head = current.next;
+            } else {
+              while (index++ < position) {
+                previous = current;
+                current = current.next;
+              }
+
+              previous.next = current.next;
+            }
+
+            length--;
+
+            return current.element;
+          } else {
+            return null;
+          }
+        };
+
+        this.remove = function (element) {
+          // remove a specific element from the list
+          // ...
+          let index = this.indexOf(element);
+          return this.removeAt(index);
+        };
+
+        // DONE
+        this.indexOf = function (element) {
+          // return the index of an element in the list
+          // ...
+
+          let current = head,
+            index = 0;
+
+          while (current) {
+            if (element === current.element) {
+              return index;
+            }
+
+            index++;
+            current = current.next;
+          }
+
+          return -1;
+        };
+
+        // DONE
+        this.isEmpty = function () {
+          // check whether the list is empty
+          // ...
+          return length === 0;
+        };
+
+        // DONE
+        this.size = function () {
+          // return the number of elements in the list
+          // ...
+          return length;
+        };
+
+        // DONE
+        this.getHead = function () {
+          // return head node
+          // ...
+          return head;
+        };
+
+        // DONE
+        this.toString = function () {
+          // overwrite the default toString method
+          var current = head;
+          var string = "List: ";
+          while (current) {
+            string += current.element + (current.next ? " -> " : "");
+            current = current.next;
+          }
+          return string;
+        };
+
+        // DONE
+        this.print = function () {
+          // print to the console
+          console.log(this.toString());
+        };
+      }
+
+      
+      // create a linked list to operate on
+
+      console.log("/-----------------------------/");
+      console.log("TESTING");
+
+      var list = new LinkedList();
+      list.append(15);
+      list.append(10);
+      list.insert(0, 13);
+      list.insert(2, 11);
+      list.print();
+      list.removeAt(2);
+      list.print();
+      console.log(list.size());
+      console.log(list.isEmpty());
+      console.log(list.indexOf(15));
+      console.log(list.indexOf(10));
+      list.print();
+      console.log(list.getHead());
+
+      console.log("/-----------------------------/");
+      console.log("TESTING AGAIN");
+
+      var list2 = new LinkedList();
+      // 1. Write pseudo code (meaning; use comments) to describe how you would
+      //    implement the append method. HINT: What two scenarios can you distinguish?
+
+      // The append method is used for adding a new item at the end of a list, and there are many scenarios in which you would use it.
+      // One is to start your list, adding the first item/head. Another reason to use it would be to continue adding items to the list at the end.
+
+      // 2. Translate your pseudo code into actual code and test it.
+      //    HINT: Use list.print() to test your code.
+
+      list2.append(1);
+      list2.append(2);
+      list2.append(3);
+      list2.print();
+
+      // 3. Repeat (1) and (2) for insert.
+
+      // Insert, like append, adds items to the list- howeve, you can choose which position to enter the items in.
+      // "Add an item to position 1 of the list"
+      list2.insert(1, 9);
+      // ^^^ This will result in the list being 0, 9, 1, 2
+
+      // 4. Repeat (1) and (2) for removeAt.
+
+      // RemoveAt, like insert, removes an item from a specified position in the list.
+      list2.removeAt(1);
+      // ^^^ Now the 9 will be removed
+
+      // 5. Repeat (1) and (2) for remove.
+
+      // When remove is called, you can specify an item to remove from the list no matter what position it is in
+      // ^^^ Now the 2 will be removed, leaving the list as 0, 1
+      console.log("// Remove 2: //");
+      list2.print();
+      list2.remove(2);
+      list2.print();
+
+      // 6. Repeat (1) and (2) for indexOf.
+
+      // indexOf returns the list index of the specified item
+      console.log("// Index of 3: //");
+      console.log(list2.indexOf(3));
+      list2.print();
+      // ^^^ This will return 1
+
+      // 7. Repeat (1) and (2) for isEmpty.
+
+      // isEmpty returns whether or not the list is empty/has any items in it
+      console.log("// isEmpty? //");
+      console.log(list2.isEmpty());
+
+      // 8. Repeat (1) and (2) for size.
+
+      // Size returns the length of the list
+      console.log("// Size: //");
+      console.log(list2.size());
+
+      // 9. Repeat (1) and (2) for getHead.
+
+      // GetHead shows which item is the head of the list- in other words, the first item in the list
+      console.log("// GetHead: //");
+      console.log(list2.getHead());
+    </script>
+  </head>
+  <body>
+    See console!
+  </body>
+</html>
